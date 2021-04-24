@@ -11,7 +11,7 @@ const item1 = new Item({
 });
 
 const item2 = new Item({
-  name: 'Welcome to your todolist!'
+  name: '<-- Hit this to erase note'
 });
 
 const defaultItems = [item1, item2];
