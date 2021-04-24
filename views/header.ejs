@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico" > -->
+</head>
+<body>
+
+  <div class="header">
+
+    <div class="makeList">
+      <button class="makeList-btn" onclick="makeListToggle()">New List</button>
+      <div class="makeList-content" id="myMakeList">
+        <form class="item" action="/makeList" method="POST">
+          <input type="text" name="newList" placeholder="Create New List" autocapitalize="off">
+          <button type="submit">+</button>
+        </form>
+      </div>
+    </div>
+
+    
+    <div class="dropdown">
+      <button class="dropdown-btn" onclick="dropdownToggle()">Lists &#x25BC;</button>
+      <div class="dropdown-content" id="myDropdown">
+        <% lists.forEach(function(list){ %>
+          <li><a href="<%= list.name %>"><%= list.name %> </a></li>
+        <% }); %>
+      </div>
+    </div>
+    
+  </div>
+
+<script>
+
+  //makeList
+  function makeListToggle() {
+    const toggle = document.getElementById("myMakeList").style.display;
+    if (toggle === "") {
+      document.getElementById("myMakeList").style.display = "block";
+    } else {
+      document.getElementById("myMakeList").style.display = "";
+    }
+  }
+
+  //dropdown
+  function dropdownToggle() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function (e) {
+    if (!e.target.matches('.dropdown-btn')) {
+      const myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    } 
+  }
+</script>
